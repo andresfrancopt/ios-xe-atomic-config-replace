@@ -265,6 +265,5 @@ The script writes the full capability list to `netconf_capabilities.txt` on each
 | `Unexpected session close` | NETCONF daemon still syncing at connect time | Script auto-retries; wait for `%DMI-5-SYNC_COMPLETE` on device console |
 | `MissingCapabilityError: :candidate` | Candidate datastore not enabled | `conf t` → `netconf-yang feature candidate-datastore` |
 | `XMLSyntaxError` on `target_config.xml` | Invalid XML characters (e.g. `<placeholder>`) in the file | Replace all placeholder values with real config before running |
-| `unknown-namespace` on `get-modelled-config-clis` | `Cisco-IOS-XE-cli-rpc` module not loaded | Verify with `show netconf-yang capabilities \| include cli-rpc` |
 | `syntax error: element does not exist` | `target_config.xml` contains a command not supported on this device | Use `get_target_config.py` to generate config from the target device itself |
 | Missing credentials | `.env` file not found or incomplete | Copy `.env.sample` to `.env` and fill in all three values |
