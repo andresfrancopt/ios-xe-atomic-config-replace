@@ -1,0 +1,33 @@
+# Environment / secrets
+.env
+
+# Python virtual environment
+acr/
+venv/
+.venv/
+env/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Auto-generated config snapshots
+pre_running*.txt
+pre_candidate*.txt
+post_running*.txt
+post_candidate*.txt
+pre_shrun*.txt
+post_shrun*.txt
+confirmed_post_shrun*.txt
+post_confirmed_commit_shrun*.txt
+base_config.xml
+config_diff.html
+netconf_capabilities.txt
+
+# Target config (contains device-specific config — do not commit without review)
+candidate_target_config.xml
+
+# OS
+.DS_Store
+Thumbs.db

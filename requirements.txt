@@ -1,0 +1,5 @@
+ncclient
+netmiko
+lxml
+xmltodict
+python-dotenv
