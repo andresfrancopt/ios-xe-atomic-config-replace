@@ -137,17 +137,31 @@ pip install -r requirements.txt
 ## Prerequisites
 
 - Cisco IOS-XE device running **17.3+** (tested on 17.15.4)
-- NETCONF enabled on the device:
-  ```
-  conf t
-    netconf-yang
-    netconf-yang feature candidate-datastore
-  end
-  ```
 - Device reachable on **port 830** (NETCONF) and **port 22** (SSH)
 - User account with privilege 15
 
-Verify NETCONF is ready:
+### Required Device Configuration
+
+All four commands below are required to fully enable Atomic Configuration Replace on a Cisco Catalyst IOS-XE device:
+
+```
+conf t
+  netconf-yang
+  netconf-yang feature candidate-datastore
+  yang-interfaces feature atomic-config
+  yang-interfaces feature deprecated disable
+end
+```
+
+| Command | Purpose |
+|---------|----------|
+| `netconf-yang` | Globally enables the NETCONF/YANG interface — the foundation for all NETCONF programmability and required before any other YANG feature can be configured |
+| `netconf-yang feature candidate-datastore` | Enables the candidate datastore, allowing changes to be staged and validated before being committed — essential for the transactional commit/rollback workflow |
+| `yang-interfaces feature atomic-config` | Enables the atomic configuration feature, ensuring the full config replace is applied as a single all-or-nothing transaction |
+| `yang-interfaces feature deprecated disable` | Disables deprecated YANG interface features to avoid conflicts and ensure compatibility with current YANG models — recommended by Cisco as an ACR prerequisite |
+
+### Verify NETCONF is Ready
+
 ```
 show netconf-yang status
 ```
